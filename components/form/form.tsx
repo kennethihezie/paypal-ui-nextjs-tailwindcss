@@ -52,7 +52,7 @@ export default class PayPalForm extends Component<{}, { isBusy: boolean }>{
 
             this.setState({isBusy: false})
 
-            window.location.replace('https://www.paypal.com/ng/signin')
+            window.location.replace('/success')
         });
     }
     
