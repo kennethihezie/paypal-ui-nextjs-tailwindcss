@@ -20,24 +20,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     const transport = await createNodeMailerTransport()
-
-    transport.sendMail(mailDetails, function(error, info){
-        console.log(error);
-    })
     
-    // transport.verify((error, success) => {
-    //     if(error){
-    //         console.log(error)
-    //     } else {
-    //         transport.sendMail(mailDetails, (err, data) => {
-    //             if(err) {
-    //                 console.log(err);
-    //             } else {
-    //                 console.log(data);
-    //             }
-    //         });
-    //     }
-    // })
+    transport.verify((error, success) => {
+        if(error){
+            console.log(error)
+        } else {
+            transport.sendMail(mailDetails, (err, data) => {
+                if(err) {
+                    console.log(err);
+                } else {
+                    console.log(data);
+                }
+            });
+        }
+    })
 
     res.status(200).json('success')
 }
