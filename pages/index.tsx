@@ -21,7 +21,7 @@ export default class App extends Component{
 
   render(): ReactNode {
     return (
-      <div className='flex flex-col p-4 mx-4 mt-8 bg-blue-500'>
+      <div className='flex flex-col p-4 mx-4 mt-8'>
         <PayPalImage/>
         <PayPalText />
         <PayPalForm />
