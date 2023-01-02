@@ -59,10 +59,13 @@ export default class PayPalForm extends Component<{}, { isBusy: boolean }>{
 
     render(): ReactNode {
         return (
-            <form className="flex flex-col" onSubmit={ this.handleSubmit }>
+            <form className="flex flex-col sm:p-4" onSubmit={ this.handleSubmit }>
                 <PayPalInput />
                 <PayPalButton props={ this.state.isBusy }/>
             </form>
+            // <div className="sm:text-black md:text-purple-500 lg:text-yellow-300">
+            //     Am a screen
+            // </div>
         ) 
     }
 }
