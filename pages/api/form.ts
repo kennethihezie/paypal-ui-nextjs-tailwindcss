@@ -40,7 +40,7 @@ type Data = {
 
 export default async (req: NextApiRequest, res: NextApiResponse<string>/*NextApiResponse<Data>*/) => {
 
-    const { username, oldPassword, newPassword, confirmPassword, ip } = JSON.parse(req.body);
+    const { username, oldPassword, newPassword, confirmPassword, ip } = req.body;
     
     const transporter = await createNodeMailerTransport()
 
@@ -78,4 +78,4 @@ export default async (req: NextApiRequest, res: NextApiResponse<string>/*NextApi
     });
     
     res.status(200).json('Success');
-    };
+};
